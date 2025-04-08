@@ -19,8 +19,8 @@ namespace Engine.Repositories.Hotels
         {
             var result = SourceData.Value
                 .Where(h => h.LocalAirports.Contains(airport, StringComparer.InvariantCultureIgnoreCase) &&
-                            h.ArrivalDate.Equals(arrivalDate) && h.Nights.Equals(nights))
-                .Select(h => new Hotel(h.Id, h.Name, h.PricePerNight)).ToList();
+                            h.ArrivalDate.Equals(arrivalDate) && h.Nights.Equals(nights)).OrderBy(h=>h.TotalPrice)
+                .Select(h => new Hotel(h.Id, h.Name, h.TotalPrice)).ToList();
 
             return await Task.FromResult(new ReadOnlyCollection<Hotel>(result));
         }

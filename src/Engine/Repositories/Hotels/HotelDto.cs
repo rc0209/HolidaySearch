@@ -12,5 +12,6 @@ namespace Engine.Repositories.Hotels
         [JsonPropertyName("price_per_night")] public int PricePerNight { get; init; }
         [JsonPropertyName("local_airports")] public List<string> LocalAirports { get; init; } = [];
         public int Nights { get; init; }
+        public int TotalPrice => PricePerNight * Nights;
     }
 }

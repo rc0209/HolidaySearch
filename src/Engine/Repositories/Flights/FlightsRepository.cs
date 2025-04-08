@@ -17,7 +17,9 @@ namespace Engine.Repositories.Flights
             var result = SourceData.Value
                 .Where(f => departingFrom.MapAirports().Contains(f.From, StringComparer.InvariantCultureIgnoreCase) &&
                             f.To.Equals(travellingTo, StringComparison.InvariantCultureIgnoreCase) &&
-                            f.DepartureDate.Equals(departureDate)).Select(f => new Flight(f.Id, f.From, f.To, f.Price))
+                            f.DepartureDate.Equals(departureDate))
+                .OrderBy(f=>f.Price)
+                .Select(f => new Flight(f.Id, f.From, f.To, f.Price))
                 .ToList();
             return await Task.FromResult(new ReadOnlyCollection<Flight>(result));
         }
