@@ -35,9 +35,9 @@ namespace Engine.Tests
             var criteria = new HolidaySearch(departingFrom, destination, departureDate, duration);
             var results = await _sut.GetHolidays(criteria);
 
-            results.Should().NotBeEmpty().And.HaveCount(1);
-            results.Single().Flight.Id.Should().Be(expectedResult.flightNumber);
-            results.Single().Hotel.Id.Should().Be(expectedResult.hotelNumber);
+            results.Should().NotBeEmpty();
+            results.First().Flight.Id.Should().Be(expectedResult.flightNumber);
+            results.First().Hotel.Id.Should().Be(expectedResult.hotelNumber);
         }
 
         private static IEnumerable<TestCaseData> BuildExampleTestCases

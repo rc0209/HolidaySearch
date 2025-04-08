@@ -14,7 +14,11 @@ namespace Engine.Repositories.Flights
 
         public async Task<IReadOnlyList<Flight>> SearchFlights(string departingFrom, string travellingTo, DateOnly departureDate)
         {
-            var result = SourceData.Value.Select(f => new Flight(f.Id, f.From, f.To, f.Price)).ToList();
+            var result = SourceData.Value
+                .Where(f => departingFrom.MapAirports().Contains(f.From, StringComparer.InvariantCultureIgnoreCase) &&
+                            f.To.Equals(travellingTo, StringComparison.InvariantCultureIgnoreCase) &&
+                            f.DepartureDate.Equals(departureDate)).Select(f => new Flight(f.Id, f.From, f.To, f.Price))
+                .ToList();
             return await Task.FromResult(new ReadOnlyCollection<Flight>(result));
         }
     }

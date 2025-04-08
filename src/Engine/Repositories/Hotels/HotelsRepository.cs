@@ -17,7 +17,11 @@ namespace Engine.Repositories.Hotels
 
         public async Task<IReadOnlyList<Hotel>> SearchHotels(string airport, DateOnly arrivalDate, int nights)
         {
-            var result = SourceData.Value.Select(h => new Hotel(h.Id, h.Name, h.PricePerNight)).ToList();
+            var result = SourceData.Value
+                .Where(h => h.LocalAirports.Contains(airport, StringComparer.InvariantCultureIgnoreCase) &&
+                            h.ArrivalDate.Equals(arrivalDate) && h.Nights.Equals(nights))
+                .Select(h => new Hotel(h.Id, h.Name, h.PricePerNight)).ToList();
+
             return await Task.FromResult(new ReadOnlyCollection<Hotel>(result));
         }
     }

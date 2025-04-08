@@ -22,12 +22,17 @@ namespace Engine
         {
             ArgumentNullException.ThrowIfNull(criteria);
 
-            var flight = await _flightsRepository.SearchFlights(criteria.DepartingFrom, criteria.TravellingTo,
+            var flights = await _flightsRepository.SearchFlights(criteria.DepartingFrom, criteria.TravellingTo,
                 criteria.DepartureDate);
-            var hotel = await _hotelsRepository.SearchHotels(criteria.TravellingTo, criteria.DepartureDate,
+            var hotels = await _hotelsRepository.SearchHotels(criteria.TravellingTo, criteria.DepartureDate,
                 criteria.Duration);
 
-            return await Task.FromResult(Enumerable.Empty<Holiday>().ToList());
+            if (flights.Count > 0)
+            {
+                return await Task.FromResult(flights.Select((f, i) => new Holiday { Flight = f, Hotel = hotels[i] }).ToList());
+            }
+
+            return await Task.FromResult(new List<Holiday>());
         }
     }
 }
