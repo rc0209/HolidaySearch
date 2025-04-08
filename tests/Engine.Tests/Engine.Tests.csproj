@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="BadHotels.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Hotels.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
