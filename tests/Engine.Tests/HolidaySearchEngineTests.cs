@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Engine.Repositories;
@@ -16,7 +17,7 @@ namespace Engine.Tests
         [SetUp]
         public void Setup()
         {
-            _sut = new HolidaySearchEngine(new HotelsRepository("Hotels.json"), new FlightsRepository());
+            _sut = new HolidaySearchEngine(new HotelsRepository("TestData//Hotels.json"), new FlightsRepository("TestData//Flights.json"));
         }
 
         [Test]

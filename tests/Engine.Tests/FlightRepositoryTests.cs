@@ -5,19 +5,19 @@ using NUnit.Framework;
 
 namespace Engine.Tests
 {
-    public class HotelRepositoryTests
+    public class FlightRepositoryTests
     {
         [Test]
         public void GivenValidFile_WhenLoading_ReturnsData()
         {
-            var sut = new HotelsRepository("TestData//Hotels.json");
+            var sut = new FlightsRepository("TestData//Flights.json");
             sut.SourceData.Value.Should().NotBeEmpty();
         }
 
         [Test]
         public void GivenInvalidFile_WhenLoading_Throws()
         {
-            var sut = new HotelsRepository("TestData//BadJson.json");
+            var sut = new FlightsRepository("BadJson.json");
             var act = () => sut.SourceData.Value;
             act.Should().Throw<Exception>();
         }
@@ -25,7 +25,7 @@ namespace Engine.Tests
         [Test]
         public void GivenMissingFile_WhenLoading_Throws()
         {
-            var sut = new HotelsRepository("badfilename.json");
+            var sut = new FlightsRepository("badfilename.json");
             var act = () => sut.SourceData.Value;
             act.Should().Throw<Exception>().WithMessage($"File not found badfilename.json");
         }

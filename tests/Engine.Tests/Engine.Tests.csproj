@@ -22,10 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BadHotels.json">
+    <None Update="TestData\BadJson.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Hotels.json">
+    <None Update="TestData\Flights.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Hotels.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
