@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Engine.Repositories;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using NUnit.Framework;
@@ -15,7 +16,7 @@ namespace Engine.Tests
         [SetUp]
         public void Setup()
         {
-            _sut = new HolidaySearchEngine();
+            _sut = new HolidaySearchEngine(new HotelsRepository("Hotels.json"), new FlightsRepository());
         }
 
         [Test]

@@ -20,5 +20,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Engine\Engine.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Hotels.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
    
 </Project>
