@@ -22,6 +22,8 @@ namespace Engine.Repositories
             }
 
             var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+            options.Converters.Add(new DateOnlyConverter());
+
             using var file = File.OpenRead(sourceFile);
             return JsonSerializer.Deserialize<List<T>>(file, options)!;
         }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Engine.Repositories.Flights
 {
@@ -9,6 +10,6 @@ namespace Engine.Repositories.Flights
         [JsonPropertyName("from")] public string From { get; init; } = string.Empty;
         [JsonPropertyName("to")] public string To { get; init; } = string.Empty;
         [JsonPropertyName("price")] public int Price { get; init; }
-        [JsonPropertyName("departure_date")] public string DepartureDate { get; init; } = string.Empty;
+        [JsonPropertyName("departure_date")] public DateOnly DepartureDate { get; init; }
     }
 }
