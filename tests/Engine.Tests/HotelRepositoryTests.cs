@@ -1,5 +1,6 @@
 using System;
 using Engine.Repositories;
+using Engine.Repositories.Hotels;
 using FluentAssertions;
 using NUnit.Framework;
 

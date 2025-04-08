@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Engine.Repositories
+namespace Engine.Repositories.Flights
 {
     internal interface IFlightsRepository
     {

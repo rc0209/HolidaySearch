@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Engine.Repositories
+namespace Engine.Repositories.Hotels
 {
     internal record HotelDto
     {

@@ -1,5 +1,6 @@
 using System;
 using Engine.Repositories;
+using Engine.Repositories.Flights;
 using FluentAssertions;
 using NUnit.Framework;
 

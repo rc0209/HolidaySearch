@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Engine.Repositories
+namespace Engine.Repositories.Flights
 {
     internal class FlightsRepository : RepositoryBase<FlightDto>, IFlightsRepository
     {

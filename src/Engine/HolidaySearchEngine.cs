@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Engine.Repositories;
+using Engine.Repositories.Flights;
+using Engine.Repositories.Hotels;
 
 namespace Engine
 {

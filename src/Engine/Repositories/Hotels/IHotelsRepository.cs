@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Engine.Repositories
+namespace Engine.Repositories.Hotels
 {
     internal interface IHotelsRepository
     {

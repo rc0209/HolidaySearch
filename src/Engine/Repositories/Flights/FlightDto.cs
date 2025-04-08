@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Engine.Repositories
+namespace Engine.Repositories.Flights
 {
     internal record FlightDto
     {
