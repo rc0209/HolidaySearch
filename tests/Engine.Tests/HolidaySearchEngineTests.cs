@@ -30,7 +30,7 @@ namespace Engine.Tests
         }
 
         [TestCaseSource(nameof(BuildExampleTestCases))]
-        public async Task GivenValidSearch_ReturnsSomeResults(string departingFrom, string destination, DateOnly departureDate, int duration, (int flightNumber, int hotelNumber, string totalPrice, string departingFrom, string travellingTo) expectedResult)
+        public async Task GivenValidSearch_WhenMatchesExist_ReturnsSomeResults(string departingFrom, string destination, DateOnly departureDate, int duration, (int flightNumber, int hotelNumber, string totalPrice, string departingFrom, string travellingTo) expectedResult)
         {
             var criteria = new HolidaySearch(departingFrom, destination, departureDate, duration);
             var results = await _sut.GetHolidays(criteria);
@@ -42,6 +42,27 @@ namespace Engine.Tests
             results.First().Flight.TravellingTo.Should().Be(expectedResult.travellingTo);
             results.First().Hotel.Id.Should().Be(expectedResult.hotelNumber);
             
+        }
+
+        [TestCaseSource(nameof(BuildBadExampleTestCases))]
+        public async Task GivenValidSearch_WhenNoMatchesExist_ReturnsNoResults(string departingFrom, string destination, DateOnly departureDate, int duration)
+        {
+            var criteria = new HolidaySearch(departingFrom, destination, departureDate, duration);
+            var results = await _sut.GetHolidays(criteria);
+
+            results.Should().BeEmpty();
+        }
+
+        private static IEnumerable<TestCaseData> BuildBadExampleTestCases
+        {
+            get
+            {
+                yield return new TestCaseData("", "AGP", new DateOnly(2023, 7, 1), 7).SetName("Bad source airport");
+                yield return new TestCaseData("MAN", "", new DateOnly(2023, 7, 1), 7).SetName("Bad destination airport");
+                yield return new TestCaseData("MAN", "", null, 7).SetName("Null Date");
+                yield return new TestCaseData("MAN", "", new DateOnly(2023, 7, 1), 0).SetName("Zero duration");
+                yield return new TestCaseData("MAN", "", new DateOnly(2023, 7, 1), -1).SetName("Negative duration");
+            }
         }
 
         private static IEnumerable<TestCaseData> BuildExampleTestCases
